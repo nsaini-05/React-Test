@@ -66,12 +66,17 @@ const SideBar = () => {
     const conversations   = useSelector(state => state.chat.conversations);
     const [sender ,selectedSender] = useState();
     const dispatch = useDispatch();
-
-   
-
-    const submitHandler = (profile) =>{
-        dispatch(select(profile))
     
+    
+    function truncateString(string, limit) {
+      if (string.length > limit) {
+        return string.substring(0, limit) + "..."
+      } else {
+        return string
+      }
+    }
+    const submitHandler = (profile) =>{
+        dispatch(select(profile))    
     }
 
   
@@ -100,7 +105,7 @@ const SideBar = () => {
         <div>
           <h4>{profile.name} </h4>
           <p>
-          {profile.posts[0].sentence}
+          {truncateString(profile.posts[0].sentence , 30)}
           </p>
         </div>
       </div>
